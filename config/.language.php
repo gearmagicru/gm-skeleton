@@ -5,7 +5,7 @@
  * Здесь перечисляются локализации с их параметрами конфигурации, только те, 
  * которые поставляются непосредственно с фреймворком.
 
- * @link https://gearmagic.ru/
+ * @link https://gearmagic.ru
  * @copyright Copyright (c) 2015 Веб-студия GearMagic
  * @license https://gearmagic.ru/license/
  */
