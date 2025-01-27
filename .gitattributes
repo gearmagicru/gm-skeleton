@@ -4,3 +4,9 @@
 # файл версии и класса веб-приложения (для каждой редакции свои)
 /app/Application.php export-ignore
 /app/Version.php export-ignore
+
+# файлы, которые буду в новой редакции
+.gitattributes export-ignore
+composer.json export-ignore
+README.md export-ignore
+LICENSE export-ignore
