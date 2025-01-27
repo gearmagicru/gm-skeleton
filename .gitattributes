@@ -2,5 +2,5 @@
 /config export-ignore
 
 # файл версии и класса веб-приложения (для каждой редакции свои)
-/app/Application.php
-/app/Version.php
+/app/Application.php export-ignore
+/app/Version.php export-ignore
