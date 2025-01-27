@@ -1,0 +1,54 @@
+<ifModule mod_headers.c>
+    Header set X-XSS-Protection "1; mode=block"
+    #Header set Content-Security-Policy "upgrade-insecure-requests"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine on
+
+    ##
+    ## Если вы установили в подкаталог, укажите здесь имя и раскомментируйте 
+    ## следующую строку.
+    ##
+    # RewriteBase /
+
+    ##
+    ## Раскомментируйте следующие строки, чтобы включить HTTPS.
+    ##
+    # RewriteCond %{HTTPS} off
+    # RewriteRule (.*) https://%{SERVER_NAME}/$1 [L,R=301]
+
+    ##
+    ## Направлять все запросы в папку /public кроме ресурсов из папки /modules.
+    ##
+    RewriteCond %{REQUEST_URI} !/public
+    RewriteCond %{REQUEST_URI} !/modules/.*/(resources|assets)/.*$
+    RewriteRule ^(.*)$  public/$1 [L]
+
+    ##
+    ## Заблокировать все файлы PHP, кроме index.
+    ##
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteCond %{REQUEST_FILENAME} \.php$
+    RewriteRule !^index.php public/index.php [L,NC]
+
+    ##
+    ## Выводить картинку по умолчанию если она не найдена.
+    ##
+    RewriteCond %{REQUEST_URI} \.(jpg|jpeg|gif|png|ico)$ [NC]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule .*$ /public/uploads/no-image.jpg [NC,L]
+
+    ##
+    ## Стандартные маршруты.
+    ##
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ public/index.php [L]
+
+</IfModule>

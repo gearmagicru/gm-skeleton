@@ -1,0 +1,21 @@
+{
+    "name": "gearmagicru/gm-skeleton",
+    "description": "GM Skeleton",
+    "keywords": ["gm", "gearmagic", "skeleton"],
+    "homepage": "https://gearmagic.ru",
+    "type": "skeleton",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Anton Tivonenko",
+            "email": "anton.tivonenko@gmail.com",
+            "homepage": "https://gearmagic.ru"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "gearmagicru/gm2": "^2.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
