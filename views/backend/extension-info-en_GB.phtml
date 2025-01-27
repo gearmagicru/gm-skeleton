@@ -1,0 +1,387 @@
+<?php
+use Gm\Helper\Str;
+use Gm\Helper\Url;
+use Gm\Panel\Helper\Ext;
+use Gm\Panel\Helper\HtmlNavigator as HtmlNav;
+?>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h1>Information about the extension: <span>&laquo;<?= $name ?>&raquo;</span>
+<?php
+if ($route && $use === BACKEND):
+    echo HtmlNav::linkIcon(
+        'link', 19, 
+        ['onclick' => Ext::jsAppWidgetLoad('@backend/' . $route), 'title' => 'View']
+    );
+endif;
+if ($route && $use === FRONTEND):
+    echo HtmlNav::linkIcon(
+        'link', 19, 
+        ['href' => Url::to($route), 'target' => '_blank', 'title' => 'View']
+    );
+endif;
+?>
+    </h1>
+        <div class="icon" style="background-image: url(<?= $icon ?>)">
+            <p><?= $description ?></p>
+        </div>
+    </div>
+</div>
+
+<?php if ($version) : ?>
+<div class="row-fluid">
+    <div class="col-md-12">
+        <h2>Extension version</h2>
+        <p>
+            <label>Version:</label>  
+            <span class="parameter"><?= $version['version'] ?: '[ unknown ]' ?></span>
+        </p>
+        <p>
+            <label>Date:</label>  
+            <span class="parameter"><?= $version['versionDate'] ? Gm::$app->formatter->toDate($version['versionDate']) : '[ unknown ]' ?></span>
+        </p>
+        <p>
+            <label>Extension page:</label> 
+<?php if ($version['url']): ?>
+            <span class="parameter"><a target="_blank" href="<?= $version['url'] ?>"><?= $version['url'] ?></a></span>
+<?php else: ?>
+            <span class="parameter">[ unknown ]</span>
+<?php endif ?>
+        </p>
+        <p>
+            <label>Page</label> 
+            <a target="_blank" href="#" onclick="<?= Ext::jsAppWidgetLoad('@backend/marketplace/catalog/component/view', ['id' => $id]) ?>;return false">in the Marketplace catalog</a>
+        </p>
+
+        <h2>Author</h2>
+        <p>
+            <label>Author's name:</label> 
+            <span class="parameter"><?= $version['author'] ?: '[ unknown ]' ?></span>
+        </p>
+        <p>
+            <label>Author page:</label>
+<?php if ($version['authorUrl']): ?>
+            <span class="parameter"><a target="_blank" href="<?= $version['authorUrl'] ?>"><?= $version['authorUrl'] ?></a></span>
+<?php else: ?>
+            <span class="parameter">[ unknown ]</span>
+<?php endif ?>
+        </p>
+        <p>
+            <label>E-mail:</label> 
+            <span class="parameter"><?= $version['email'] ?: '[ unknown ]' ?></span>
+        </p>
+
+        <h2>License</h2>
+        <p>
+<?php if ($version['licenseUrl']): ?>
+            <span class="parameter"><a href="<?= $version['licenseUrl'] ?>"><?= $version['license'] ?></a></span>
+<?php else: ?>
+            <span class="parameter"><?= $version['license'] ?: '[ unknown ]' ?></span>
+<?php endif ?>
+        </p>
+    </div>
+</div>
+<?php endif ?>
+
+<div class="row-fluid">
+    <div class="col-md-12">
+        <h2>Extension status</h2>
+        <p>
+            <label>Enabled:</label> <?= HtmlNav::checkIcon($enabled, 18) ?>
+        </p>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="col-md-12">
+        <h2>Extension installed</h2>
+        <p>
+            <label>Date and time:</label> 
+            <span class="parameter"><?= $createdDate ?: '[ unknown ]' ?></span>
+        </p>
+        <p>
+            <label>User:</label> 
+            <span class="parameter">
+<?php
+    if ($createdUser): 
+        if (empty($createdUser['profile']['name'])):
+            if (empty($createdUser['user']['username'])):
+                echo '[ unknown ]';
+            else:
+                echo HtmlNav::linkIcon(
+                    'edit', 14, 
+                    [
+                        'onclick' => Ext::jsAppWidgetLoad('@backend/users/form/view/' . $createdUser['user']['id']),
+                        'title'   => 'Edit'
+                    ]
+                );
+                echo ' ', $createdUser['user']['username'];
+            endif;
+        else:
+            echo HtmlNav::linkIcon(
+                'edit', 14,
+                [
+                    'onclick' => Ext::jsAppWidgetLoad('@backend/user-profiles/form/view/' . $createdUser['profile']['id']),
+                    'title'   => 'Edit'
+                ]
+            );
+            echo ' ', $createdUser['profile']['name'];
+            if (!empty($createdUser['user']['username'])):
+                echo ' ( ';
+                echo HtmlNav::linkIcon(
+                    'edit', 14,
+                    [
+                        'onclick' => Ext::jsAppWidgetLoad('@backend/users/form/view/' . $createdUser['user']['id']),
+                        'title'   => 'Edit'
+                    ]
+                );
+                echo ' ', $createdUser['user']['username'], ')';
+            endif;
+        endif;
+    else:
+        echo '[ unknown ]';
+    endif;
+?>
+            </span>
+        </p>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="col-md-12">
+        <h2>Extension configuration</h2>
+        <p>
+            <label>Use for:</label> 
+<?php if ($use === BACKEND): ?>
+            <span class="parameter"><?= Gm::t('app', BACKEND_NAME) ?></span>
+<?php else: ?>
+<?php if ($use === FRONTEND): ?>
+            <span class="parameter"><?= Gm::t('app', FRONTEND_NAME) ?></span>
+<?php else: ?>
+            <span class="parameter">[ unknown ]</span>
+<?php endif; endif;  ?>
+        </p>
+        <p>
+            <label>System (built-in):</label> <?= HtmlNav::checkIcon($lock) ?>
+        </p>
+        <p>
+            <label>Has settings:</label> <?= HtmlNav::checkIcon($hasSettings) ?>
+        </p>
+        <p>
+            <label>Extension ID:</label> 
+            <span class="parameter"><?= $id ?></span>
+        </p>
+        <p>
+            <label>ID in the database:</label> 
+            <span class="parameter"><?= $rowId ?></span>
+        </p>
+        <p>
+            <label>Namespace:</label> 
+            <span class="parameter"><?= $namespace ?></span>
+        </p>
+        <p>
+            <label>Default controller name:</label> 
+            <span class="parameter"><?= $extension->defaultController ?></span>
+        </p>
+
+        <h4>Path</h4>
+        <p>
+            <label>Local path:</label> 
+            <span class="parameter"><?= $path ?></span>
+        </p>
+        <p>
+            <label>Base path:</label> 
+            <span class="parameter"><?= $extension->basePath ?></span>
+        </p>
+        <p>
+            <label>Path to resources:</label> 
+            <span class="parameter"><?= $extension->getAssetsPath() ?></span>
+        </p>
+        <p>
+            <label>Path to scripts:</label> 
+            <span class="parameter"><?= $extension->getRequireUrl() ?></span>
+        </p>
+    </div>
+</div>
+
+<?php if ($install['shortcodes']): ?>
+<div class="row-fluid">
+    <div class="col-md-12">
+        <h2>Used shortcodes</h2>
+        <p>
+            <label>Shortcodes:</label> 
+            <span class="parameter">
+<?php foreach ($install['shortcodes'] as $index => $name): ?> 
+ [<?= $name ?>]
+<?php endforeach ?>
+            </span>
+        </p>
+
+<?php if ($shortcodesConfig = $module->getConfig()->get('shortcodes', [])): ?>
+        <h4>Options</h4>
+        <table>
+            <tr>
+                <th width="100px">Name</th>
+                <th>Value</th>
+            </tr>
+<?php foreach ($shortcodesConfig as $name => $value): ?>
+            <tr>
+                <td><?= $name ?></td><td><?= $value ?></td>
+            </tr>
+<?php endforeach ?>
+        </table>
+<?php endif ?>
+    </div>
+</div>
+<?php endif ?>
+
+<?php if ($extension->viewManager): ?>
+<div class="row-fluid">
+    <div class="col-md-12">
+        <h2>Extension view</h2>
+        <p>
+            <label>ID in the template:</label> 
+            <span class="parameter"><?= $extension->viewManager->id ?? '[ unknown ]' ?></span>
+        </p>
+        <p>
+            <label>Autoload templates from a theme:</label> <?= HtmlNav::checkIcon($extension->viewManager->useTheme) ?>
+        </p>
+        <p>
+            <label>Using localization in naming template files:</label> <?= HtmlNav::checkIcon($extension->viewManager->useLocalize) ?>
+        </p>
+        <p>
+            <label>Delimiter in template filenames:</label> 
+            <span class="parameter">&laquo;<?= $extension->viewManager->localeDelimiter ?>&raquo;</span>
+        </p>
+        <p>
+            <label>Path to template files:</label> 
+            <span class="parameter"><?= $extension->viewManager->basePath ?></span>
+        </p>
+    </div>
+</div>
+
+<?php if ($map = $extension->viewManager->getTempalteMap()): ?>
+<div class="row-fluid">
+    <div class="col-md-12">
+        <h2>Templates</h2>
+        <table>
+            <tr>
+                <th width="100px">Имя</th>
+                <th>Path in template map</th>
+                <th>Full path to the template file</th>
+            </tr>
+<?php foreach($map as $name => $path): $filename = $module->viewManager->getViewFile($name); ?>
+            <tr>
+                <td><?= $name ?></td>
+                <td><?= $path ?></td>
+                <td><?= $filename ?: HtmlNav::checkIcon(false) ?></td>
+            </tr>
+<?php endforeach ?>
+        </table>
+    </div>
+</div>
+<?php endif ?>
+
+<?php if ($renderers = $extension->viewManager->getRenderers()): ?>
+<div class="row-fluid">
+    <div class="col-md-12">
+        <h2>Renders</h2>
+        <table>
+            <tr>
+                <th width="100px">Name</th>
+                <th>Render class</th>
+            </tr>
+<?php foreach ($renderers as $name => $renderer): $className = $extension->viewManager->makeClassNameRenderer($name); ?>
+            <tr>
+                <td><?= $name ?></td>
+                <td><?= $className ?></td>
+            </tr>
+<?php endforeach ?>
+        </table>
+    </div>
+</div>
+<?php endif ?>
+
+<?php if ($assets = $extension->viewManager->assets): ?>
+<div class="row-fluid">
+    <div class="col-md-12">
+        <h2>Including scripts</h2>
+<?php if (!empty($assets['packages'])): ?>
+        <h4>Script packages:</h4>
+        <ul class="none">
+<?php foreach ($assets['packages'] as $name => $package): ?>
+            <li>
+                <h4><?= $name ?></h4>
+                <ul>
+<?php if (isset($package['position'])): ?>
+                    <li><label>position:</label> <?= $package['position'] ?></li>
+<?php endif ?>
+<?php if (isset($package['core'])): ?>
+                    <li><label>core:</label> <?= HtmlNav::checkIcon($package['core']) ?></li>
+<?php endif ?>
+<?php if (isset($package['custom'])): ?>
+                    <li><label>custom:</label> <?= HtmlNav::checkIcon($package['custom']) ?></li>
+<?php endif ?>
+<?php if (!empty($package['js'])): ?>
+                    <li>
+                        <label>javascript:</label><br />
+<?
+foreach($package['js'] as $filename => $position):
+    echo (is_numeric($filename) ? $position : $filename), '<br />';
+endforeach
+?>
+                    </li>
+<?php endif ?>
+<?php if (!empty($package['css'])): ?>
+                    <li>
+                        <label>stylesheat:</label><br />
+<?
+foreach ($package['css'] as $filename => $position):
+    echo (is_numeric($filename) ? $position : $filename), '<br />';
+endforeach
+?>
+                    </li>
+<?php endif ?>
+                </ul>
+            </li>
+<?php endforeach ?>
+        </ul>
+<?php endif ?>
+    </div>
+</div>
+<?php endif ?>
+<?php endif ?>
+
+<div class="row-fluid">
+    <div class="col-md-12">
+        <h2>Extension permissions</h2>
+<?php if ($permissions && $roles): ?>
+        <table class="compact">
+            <tr>
+                <th width="220px" rowspan="2">Permissions<br>-<br>User roles</th>
+<?php foreach ($permissions as $permission => $name): ?>
+                <th width="140px" style="color:#217346;font-size:17px;padding:3px;background-color:#e4e4e4"><?= $permission ?></th>
+<?php endforeach ?>
+            </tr>
+            <tr>
+<?php foreach ($permissions as $permission => $name): ?>
+                <th valign="top">
+                    <div style="color:#3e79b4;font-size:12px;text-transform:uppercase"><?= Str::ellipsis($name[0], 0, 16) ?></div>
+                    <div><?= $name[1] ?></div>
+                </th>
+<?php endforeach ?>
+            </tr>
+<?php foreach ($roles as $index => $role): ?>
+            <tr>
+                <td><?= $role['role'] ?></td>
+<?php foreach ($permissions as $permission => $name): ?>
+                <td align="center"><?= HtmlNav::checkIcon(in_array($permission,  $role['permissions'])) ?></td>
+<?php endforeach ?>
+            </tr>
+<?php endforeach ?>
+        </table>
+<?php else: ?>
+        <span class="parameter">[ not use ]</span>
+<?php endif ?>
+    </div>
+</div>
