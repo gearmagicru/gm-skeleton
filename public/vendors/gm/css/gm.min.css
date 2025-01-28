@@ -1,0 +1,222 @@
+/*!
+ * GM Framework (https://gearmagic.ru/framework/)
+ * Copyright 2014-2017 GearMagic <anton.tivonenko@gmail.com>
+ * https://gearmagic.ru/license/
+ */
+
+/* Стик сообщений */
+.gm-stick {
+    display: block !important;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+    margin: 0 3px 1px 3px;
+    background: #f4f4f4;
+    border-bottom: 1px solid #cccccc;
+    color: #425460;
+}
+.gm-stick-head {
+    padding: 5px 10px 5px 10px;
+    font-size: 16px;
+    color: #fff;
+}
+.gm-stick-name {
+    font-size: 22px;
+    color: #484848;
+}
+.gm-stick-exception {
+    font-size: 18px;
+    color: #818181;
+}
+.gm-stick-body {
+    font-size: 14px;
+}
+.gm-stick-file {
+    background: #EAF9FF;
+    padding: 5px 10px 5px 10px;
+}
+.gm-stick-file .file-line {
+    float: right;
+    font-weight: bold;
+}
+.gm-stick-file .file-letter {
+    font-weight: normal;
+}
+.gm-stick-msg {
+    font-size: 17px;
+    line-height: 20px;
+    margin-bottom: 5px;
+    padding: 5px 10px 5px 10px;
+}
+.gm-stick-trace {
+    background: #272822;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.gm-stick-trace ol,
+.gm-stick-trace ul {
+    margin: 0;
+    padding: 0 0 0 30px;
+}
+.gm-stick-trace ol li { 
+    margin-bottom: 7px;
+}
+.gm-stick-trace .target {
+    line-height: 1.2;
+    font-size: 16px;
+}
+.gm-stick-trace .target-type,
+.gm-stick-trace .target-class {
+    font-size: 14px;
+}
+.gm-stick-trace .target-func {
+    color: #687680;
+}
+.gm-stick-trace .target-func-args {
+    font-size: 13px;
+}
+.gm-stick-trace .target-func-args .string { color: #E6DB74; }
+.gm-stick-trace .target-func-args .title { color: #66D9EF; }
+.gm-stick-trace .target-func-args .number { color: #AE81FF; }
+.gm-stick-trace .target-func-args .keyword { color: #F92672; }
+.gm-stick-trace .target-file {
+    margin-top: 3px;
+    font-size: 13px;
+    color: #c7cccf;
+    line-height: 1;
+}
+.gm-stick-trace .target-file .file-line {
+    font-weight: bold;
+    font-size: 12px;
+}
+/* стик - ошибка */
+.gm-stick.gm-stick-error .gm-stick-name { color: #e71311; }
+.gm-stick.gm-stick-error .gm-stick-exception { color: #ee7c6f; }
+/* стик - уведомление */
+.gm-stick.gm-stick-notice .gm-stick-name { color: #2e82d7; }
+.gm-stick.gm-stick-notice .gm-stick-exception { color: #46a1ff; }
+/* стик - предупреждение, отладка */
+.gm-stick.gm-stick-warning .gm-stick-name,
+.gm-stick.gm-stick-dump  .gm-stick-name { color: #f19426; }
+.gm-stick.gm-stick-warning .gm-stick-exception,
+.gm-stick.gm-stick-dump .gm-stick-exception { color: #ffb258; }
+
+/* Разметка компонента */
+.gm-markup-cmp {
+    display: block;
+    border: 1px dotted #000 !important;
+}
+.gm-markup-cmp:hover {
+    border: 1px dotted #000 !important;
+    background: rgba(33, 115, 70, 0.1);
+}
+/* Управление разметкой компонента */
+.gm-markup-cmp__control {
+    position: absolute;
+    width: 45px;
+    height: 25px;
+    background: #fff url(../img/icon-component-ctrl.svg) no-repeat 5px center;
+    border-radius: 4px;
+    -webkit-box-shadow: 1px 1px 5px -1px #000;
+    -moz-box-shadow: 1px 1px 5px -1px #000;
+    box-shadow: 1px 1px 5px -1px #000;
+}
+.gm-markup-cmp__control:hover {
+    background-color: #b1cebe;
+    cursor: pointer;
+}
+.gm-markup-cmp__control::after {
+    content: '';
+    position: absolute;
+    right: 2px;
+    top: 0;
+    width: 17px;
+    height: 100%;
+    border-radius: 0 4px 4px 0;
+    border-left: 1px solid #f1f1f1;
+    background: transparent url(../img/icon-btn-down.svg) no-repeat center center;
+}
+.gm-markup-cmp__control:hover::after {
+    border-left: 1px solid #9bb6a7;
+}
+
+/* Разметка блока */
+.gm-markup-block {
+    display: block;
+    border: 1px dotted #000 !important;
+}
+.gm-markup-block:hover {
+    border: 1px dotted #000 !important;
+    background: rgba(33, 115, 70, 0.1);
+}
+/* Управление разметкой блока */
+.gm-markup-block__control {
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    background: #fff url(../img/icon-block-ctrl.svg) no-repeat 5px center;
+    background-size: 55%;
+    border-radius: 50%;
+    -webkit-box-shadow: 1px 1px 5px -1px #000;
+    -moz-box-shadow: 1px 1px 5px -1px #000;
+    box-shadow: 1px 1px 5px -1px #000;
+}
+.gm-markup-block__control:hover {
+    width: 25px;
+    height: 25px;
+    background: #217346 url(../img/icon-block-ctrl_hover.svg) no-repeat 5px center;
+    background-size: 55%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Меню разметки */
+.gm-markup-menu {
+    z-index: 1000;
+    display: none;
+    position: absolute;
+    width: 200px;
+    background: #fff;
+    left: 0;
+    top: 24px;
+    box-shadow: #888 0px 0px 6px;
+    font: normal 13px/16px arial, helvetica, verdana, sans-serif;
+}
+.gm-markup-menu__icon {
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 16px;
+    height: 16px;
+}
+.gm-markup-menu__item {
+    padding: 9px 7px 9px 12px;
+    color: #333;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.gm-markup-menu__item-icon { 
+    position: relative;
+    padding-left: 33px; 
+}
+.gm-markup-menu__item:hover { background: #d8e7df; }
+.gm-markup-menu__item-sp {
+    position: relative;
+    width: 100%;
+    height: 1px;
+    margin: 1px 0 1px 0;
+}
+.gm-markup-menu__item-sp::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    right: 3px;
+    top: 0;
+    height: 1px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+/* Значки */
+.gm-markup__icon-markup-settings { background: url(../img/icon-markup-settings.svg); }
+.gm-markup__icon-hide { background: url(../img/icon-hide.svg); }
+.gm-markup__icon-show { background: url(../img/icon-show.svg); }
