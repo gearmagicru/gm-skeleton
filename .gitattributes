@@ -8,6 +8,7 @@
 # файлы .gitkeep
 /public/uploads/.gitkeep export-ignore
 /public/themes/.gitkeep export-ignore
+/runtime/.gitkeep export-ignore
 
 # файлы, которые буду в новой редакции
 .gitattributes export-ignore
