@@ -5,6 +5,10 @@
 /app/Application.php export-ignore
 /app/Version.php export-ignore
 
+# файлы .gitkeep
+/public/uploads/.gitkeep export-ignore
+/public/themes/.gitkeep export-ignore
+
 # файлы, которые буду в новой редакции
 .gitattributes export-ignore
 composer.json export-ignore
