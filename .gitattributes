@@ -11,6 +11,7 @@
 /runtime/.gitkeep export-ignore
 
 # файлы, которые буду в новой редакции
+.gitignore export-ignore
 .gitattributes export-ignore
 .editorconfig  export-ignore
 composer.json export-ignore
