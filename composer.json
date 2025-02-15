@@ -1,7 +1,7 @@
 {
     "name": "gearmagicru/gm-skeleton",
     "description": "GM Skeleton",
-    "keywords": ["gm", "gearmagic", "skeleton"],
+    "keywords": ["gearmagic", "gm-skeleton", "skeleton"],
     "homepage": "https://gearmagic.ru",
     "type": "skeleton",
     "license": "GPL-2.0+",
