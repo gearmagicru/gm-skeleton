@@ -13,13 +13,18 @@ define('REQUIRED_PHP_VERSION', '8.2');
 define('REQUIRED_APACHE_VERSION', '2.4');
 
 /**
- * Отладка
+ * Отладка.
  */
 define('GM_MODE', 'production'); // production, development
 define('GM_DEBUG', false); // включить / выключить вывод ошибок
 define('GM_DEBUG_START', microtime(false)); // время запуска (для измерения времени работы приложения)
 define('GM_ENABLE_ERROR_HANDLER', true); // включить / выключить обработчик ошибок
 define('GM_ENABLE_EXCEPTION_HANDLER', true); // включить / выключить обработчик исключений
+
+/**
+ * Использовать несколько сайтов на основе одного кода.
+ */
+define('GM_MULTISITE', true);
 
 /**
  * Установка уровня вывода ошибок PHP
