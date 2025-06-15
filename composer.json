@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": ">=8.2",
-        "gearmagicru/gm2": "^2.0"
+        "gearmagicru/gm2": "2.*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
