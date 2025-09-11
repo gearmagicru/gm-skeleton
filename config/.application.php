@@ -13,7 +13,7 @@ return [
      * 
      * Здесь указывают язык (слаг языка) приложения по умолчанию. Из коробки доступны: "ru", "en".
      * Если значение не меняется, значит оно уже выставлено с помощью панели управления и берётся из 
-     * унифицированного (unified) конфигуратора приложения `Gear::$app->unifiedConfig->language`.
+     * унифицированного (unified) конфигуратора приложения `Gm::$app->unifiedConfig->language`.
      */
     'language' => 'ru',
 
@@ -162,7 +162,7 @@ return [
      * для получения обновлений, лицензионного ключа, справочной информации и т.д.
      */
     'apiMarketplaceServer' => [
-        'url' => 'http://apps.gearmagic.ru/api'
+        'url' => 'http://gearmagic.ru/api'
     ],
 
     /**
@@ -172,7 +172,7 @@ return [
      * для получения справочной информации для вашего веб-приложения.
      */
     'docsServer' => [
-        'url' => 'https://apps.gearmagic.ru/docs'
+        'url' => 'https://gearmagic.ru/docs'
     ],
 
     /**
@@ -181,7 +181,7 @@ return [
      * Здесь перечисляются имена служб приложения, которые будут автоматически 
      * создаваться (и вызывать свой метод "bootstrap") после запуска приложения.
      * Эти параметры преобладают над параметрами указанными в унифицированном 
-     * конфигураторе приложения `Gear::$app->unifiedConfig->bootstrap`.
+     * конфигураторе приложения `Gm::$app->unifiedConfig->bootstrap`.
      * 
      * Пример: `'serviceName' => [FRONTEND => false, BACKEND => true]`
      */
@@ -208,7 +208,7 @@ return [
         'name'         => 'Skeleton',
         'originalName' => 'Скелет',
         'number'       => '1.0',
-        'resource'     => 'https://apps.gearmagic.ru',
+        'resource'     => 'https://gearmagic.ru',
         'docsResource' => 'https://docs.gearmagic.ru',
         'date'         => '01/01/2025'
     ]
